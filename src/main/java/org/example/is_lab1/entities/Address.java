@@ -32,11 +32,6 @@ public class Address {
         this.town = town;
     }
 
-    public Address(Integer id, String street) {
-        this.id = id;
-        this.street = street;
-    }
-
     public Integer getId() {
         return id;
     }

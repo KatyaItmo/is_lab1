@@ -1,5 +1,6 @@
 package org.example.is_lab1.controllers;
 
+import jakarta.enterprise.context.ApplicationScoped; // 👈 Добавили скоуп для единообразия с CDI
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -9,6 +10,7 @@ import org.example.is_lab1.entities.*;
 
 @Path("/enums")
 @Produces(MediaType.APPLICATION_JSON)
+@ApplicationScoped
 public class EnumController {
 
     @GET

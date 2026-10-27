@@ -1,0 +1,55 @@
+/* ==========================================================================
+   ВСПЛЫВАЮЩИЕ УВЕДОМЛЕНИЯ (Toast Messages)
+   ========================================================================== */
+
+.message {
+    /* Фиксируем в правом верхнем углу поверх всего интерфейса */
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    z-index: 1000;
+
+    max-width: 320px;
+    padding: 14px 20px;
+    border-radius: 16px;
+
+    /* Моноширинный шрифт и размер */
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.4;
+
+    /* Эффект матового стекла */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Плавная анимация появления и исчезновения */
+    animation: toastFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* 1. Обычный текст (type: 'text' или любой другой) */
+.message.text {
+    background-color: rgba(22, 18, 26, 0.85); /* Темный полупрозрачный фон */
+    color: var(--text-light);                  /* Беловатый мягкий текст */
+    border: 1px solid rgba(244, 114, 182, 0.3); /* Тонкая розовая рамка */
+}
+
+/* 2. Ошибка (type: 'error') — тот самый алый/розоватый оттенок */
+.message.error {
+    background-color: rgba(40, 15, 25, 0.85);   /* Глубокий розовато-темный фон */
+    color: #ffb3c6;                             /* Нежно-алый / розоватый текст */
+    border: 1px solid rgba(255, 75, 110, 0.5);  /* Выразительная алая рамка */
+    box-shadow: 0 8px 24px rgba(255, 75, 110, 0.2); /* Легкое алое свечение */
+}
+
+/* Анимация плавного выезда и проявления */
+@keyframes toastFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

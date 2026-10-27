@@ -1,6 +1,7 @@
 package org.example.is_lab1.daos;
 
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.is_lab1.entities.Address;
@@ -8,9 +9,10 @@ import org.example.is_lab1.entities.Address;
 import java.util.List;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
 public class AddressDao {
-    @PersistenceContext
+
+    @PersistenceContext(unitName = "MyPU")
     private EntityManager em;
 
     public Address create(Address address) {

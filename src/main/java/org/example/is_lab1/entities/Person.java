@@ -66,61 +66,6 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public Person(Integer id, Color eyeColor, Location location, ZonedDateTime birthday, Integer height, String passportID, Country nationality) {
-        this.id = id;
-        this.eyeColor = eyeColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-        this.nationality = nationality;
-    }
-
-    public Person(Color eyeColor, Location location, ZonedDateTime birthday, Integer height, String passportID, Country nationality) {
-        this.eyeColor = eyeColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-        this.nationality = nationality;
-    }
-
-    public Person(Integer id, Color eyeColor, Color hairColor, Location location, ZonedDateTime birthday, Integer height, String passportID) {
-        this.id = id;
-        this.eyeColor = eyeColor;
-        this.hairColor = hairColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-    }
-
-    public Person(Color eyeColor, Color hairColor, Location location, ZonedDateTime birthday, Integer height, String passportID) {
-        this.eyeColor = eyeColor;
-        this.hairColor = hairColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-    }
-
-    public Person(Integer id, Color eyeColor, Location location, ZonedDateTime birthday, Integer height, String passportID) {
-        this.id = id;
-        this.eyeColor = eyeColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-    }
-
-    public Person(Color eyeColor, Location location, ZonedDateTime birthday, Integer height, String passportID) {
-        this.eyeColor = eyeColor;
-        this.location = location;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportID = passportID;
-    }
-
     public Integer getId() {
         return id;
     }

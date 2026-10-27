@@ -1,0 +1,99 @@
+#new-coordinates-container, #new-location-container, #new-address-container {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-add {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group label, .select-group label {
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    text-transform: lowercase;
+}
+
+.add-input {
+    width: 100%;
+    padding: 12px 16px;
+
+    background-color: var(--accent-light);
+    border: 3px solid var(--accent);
+    border-radius: 14px;
+
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 20px;
+
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.add-input:focus {
+    outline: none;
+    border-color: var(--accent-hover);
+    background-color: var(--bg-surface);
+    box-shadow: 0 0 10px var(--accent-light);
+}
+
+.add-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+    font-family: inherit;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.select-group select {
+    width: 100%;
+    padding: 12px 16px;
+
+    background-color: var(--accent-light);
+    border: 3px solid var(--accent);
+    border-radius: 14px;
+
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 20px;
+
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(243, 209, 223, 0.2);
+}
+
+.select-group select:hover {
+    border-color: var(--accent-hover);
+    background-color: var(--bg-surface);
+}
+
+.select-group select:focus {
+    border-color: var(--accent-hover);
+    background-color: var(--bg-surface);
+    box-shadow: 0 0 10px var(--accent-light);
+}
+
+.select-group option {
+    padding: 8px;
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+}
+

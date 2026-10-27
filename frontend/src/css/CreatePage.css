@@ -1,0 +1,39 @@
+#create-container {
+    min-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: fit-content;
+}
+
+.add-but {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+
+    background-color: var(--accent);
+    color: var(--text-light);
+
+    border: none;
+    border-radius: 20px;
+
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-but:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px var(--accent-light);
+}
+
+.add-but:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px var(--accent-light);
+}

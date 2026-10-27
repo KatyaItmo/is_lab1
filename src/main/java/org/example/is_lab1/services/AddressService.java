@@ -1,29 +1,58 @@
 package org.example.is_lab1.services;
 
-import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.example.is_lab1.daos.AddressDao;
+import org.example.is_lab1.daos.LocationDao;
+import org.example.is_lab1.dtos.AddressDto;
 import org.example.is_lab1.entities.Address;
+import org.example.is_lab1.entities.Location;
 import org.example.is_lab1.exceptions.NotFoundException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Stateless
+@RequestScoped
+@Transactional
 public class AddressService {
 
     @Inject
     private AddressDao addressDao;
 
-    public List<Address> findAll() {
-        return addressDao.findAll();
+    @Inject
+    private LocationDao locationDao;
+
+    public List<AddressDto> findAll() {
+        return addressDao.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
-    public Address findById(Integer id) {
-        return addressDao.findById(id)
-                .orElseThrow(() -> new NotFoundException("address с id " + id + " не найден"));
+    public AddressDto create(AddressDto dto) {
+        Address address = new Address();
+        address.setStreet(dto.getStreet());
+
+        if (dto.getTownId() != null) {
+            Location town = locationDao.findById(dto.getTownId())
+                    .orElseThrow(() -> new NotFoundException("location с id " + dto.getTownId() + " не найдена"));
+            address.setTown(town);
+        } else {
+            address.setTown(null);
+        }
+
+        Address saved = addressDao.create(address);
+        return convertToDto(saved);
     }
 
-    public Address create(Address address) {
-        return addressDao.create(address);
+    private AddressDto convertToDto(Address address) {
+        AddressDto dto = new AddressDto();
+        dto.setId(address.getId());
+        dto.setStreet(address.getStreet());
+
+        if (address.getTown() != null) {
+            dto.setTownId(address.getTown().getId());
+        }
+        return dto;
     }
 }

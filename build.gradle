@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2'
     providedCompile 'jakarta.platform:jakarta.jakartaee-web-api:9.1.0'
     implementation 'org.postgresql:postgresql:42.7.2'
 

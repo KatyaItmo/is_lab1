@@ -1,4 +1,4 @@
-FROM quay.io/wildfly/wildfly:26.1.2.Final
+FROM quay.io/wildfly/wildfly:27.0.1.Final-jdk17
 
 USER root
 

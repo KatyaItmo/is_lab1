@@ -1,0 +1,39 @@
+:root {
+  --bg-overlay: rgba(18, 16, 20, 0.80);
+
+  --bg-surface: rgba(30, 24, 32, 0.75);
+  --bg-hover: rgba(45, 34, 48, 0.85);
+
+  --text-light: #FFFFFF;
+  --text-main: #FCE7F3;
+  --text-muted: #A890A0;
+
+  --accent: #F472B6;
+  --accent-hover: #EC4899;
+  --accent-light: rgba(244, 114, 182, 0.20);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  font-family: 'Courier New', Courier, monospace, system-ui;
+  color: var(--text-main);
+
+  background-image:
+          linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+          url('assets/uncanny_cat.jpg');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}

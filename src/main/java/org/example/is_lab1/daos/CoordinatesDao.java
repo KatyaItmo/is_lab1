@@ -1,17 +1,20 @@
 package org.example.is_lab1.daos;
 
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.example.is_lab1.entities.Coordinates;
 
 import java.util.List;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
+@Transactional
 public class CoordinatesDao {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "MyPU")
     private EntityManager em;
 
     public Coordinates create(Coordinates coordinates) {
