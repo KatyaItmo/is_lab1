@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.example.is_lab1.auth.UserService;
 import org.example.is_lab1.dtos.OrganizationDto;
 import org.example.is_lab1.services.OrganizationService;
 
@@ -19,13 +20,19 @@ public class OrganizationController {
     @Inject
     private OrganizationService organizationService;
 
+    @Inject
+    private UserService userService;
+
     @GET
     public List<OrganizationDto> getAllOrganizations() {
         return organizationService.findAll();
     }
 
     @POST
-    public Response createOrganization(OrganizationDto dto) {
+    public Response createOrganization(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
+            OrganizationDto dto) {
+        userService.validateSession(sessionToken);
         OrganizationDto created = organizationService.create(dto);
         return Response.status(Response.Status.CREATED).entity(created).build();
     }

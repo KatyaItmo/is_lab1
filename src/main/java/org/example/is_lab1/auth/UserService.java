@@ -4,6 +4,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.example.is_lab1.exceptions.IllegalPasswordException;
+import org.example.is_lab1.exceptions.NotAuthorizedException;
 import org.example.is_lab1.exceptions.NotFoundException;
 import org.example.is_lab1.exceptions.OccupiedUsernameException;
 
@@ -54,5 +55,11 @@ public class UserService {
             return null;
         }
         return userDao.findBySessionToken(token).orElse(null);
+    }
+
+    public void validateSession(String token) {
+        if (token == null || token.isBlank() || userDao.findBySessionToken(token).isEmpty()) {
+            throw new NotAuthorizedException("unauthorized: недействительный или просроченный токен сессии");
+        }
     }
 }

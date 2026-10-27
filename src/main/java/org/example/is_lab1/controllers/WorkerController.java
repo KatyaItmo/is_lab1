@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.example.is_lab1.auth.UserService;
 import org.example.is_lab1.dtos.WorkerDto;
 import org.example.is_lab1.dtos.WorkerFilterDto;
 import org.example.is_lab1.entities.Status;
@@ -21,6 +22,9 @@ public class WorkerController {
 
     @Inject
     private WorkerService workerService;
+
+    @Inject
+    private UserService userService;
 
     @GET
     public List<WorkerDto> getWorkers(
@@ -40,20 +44,30 @@ public class WorkerController {
     }
 
     @POST
-    public Response createWorker(WorkerDto dto) {
+    public Response createWorker(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
+            WorkerDto dto) {
+        userService.validateSession(sessionToken);
         WorkerDto created = workerService.createWorker(dto);
         return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
-    public WorkerDto updateWorker(@PathParam("id") Integer id, WorkerDto dto) {
+    public WorkerDto updateWorker(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
+            @PathParam("id") Integer id,
+            WorkerDto dto) {
+        userService.validateSession(sessionToken);
         return workerService.updateWorker(id, dto);
     }
 
     @DELETE
     @Path("/{id}")
-    public Response deleteWorker(@PathParam("id") Integer id) {
+    public Response deleteWorker(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
+            @PathParam("id") Integer id) {
+        userService.validateSession(sessionToken);
         workerService.deleteWorker(id);
         return Response.noContent().build();
     }
@@ -79,16 +93,20 @@ public class WorkerController {
 
     @POST
     @Path("/{id}/special/fire")
-    public WorkerDto fireWorker(@PathParam("id") Integer id) {
+    public WorkerDto fireWorker(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
+            @PathParam("id") Integer id) {
+        userService.validateSession(sessionToken);
         return workerService.fireWorker(id);
     }
 
     @POST
     @Path("/{id}/special/index-salary")
     public WorkerDto indexSalary(
+            @CookieParam("SESSION_TOKEN") String sessionToken,
             @PathParam("id") Integer id,
-            @QueryParam("coefficient") double coefficient
-    ) {
+            @QueryParam("coefficient") double coefficient) {
+        userService.validateSession(sessionToken);
         return workerService.indexSalary(id, coefficient);
     }
 }
